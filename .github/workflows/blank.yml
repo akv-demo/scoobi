@@ -28,9 +28,12 @@ jobs:
       - name: Caching dependencies
         uses: actions/cache@v3
         with:
-          path: target
-          key: ${{ runner.os }}-${{ matrix.java }}-${{ hashFiles('src/**/*.scala', 'build.sbt') }}
-          restore-keys: ${{ runner.os }}-${{ matrix.java }}-
+          path: |
+            target
+            ~/.ivy2
+            ~/.sbt
+          key: ${{ runner.os }}-${{ matrix.java }}-v2-${{ hashFiles('src/**/*.scala', 'build.sbt') }}
+          restore-keys: ${{ runner.os }}-${{ matrix.java }}-v2-
 
       - name: ls -la
         run: ls -la
